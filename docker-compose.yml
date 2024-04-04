@@ -38,7 +38,7 @@ services:
     volumes:
       - ./src:/var/www/html
       - ./log/codeigniter:/var/www/html/writable/logs
-      - ./conf/php:/usr/local/etc/php
+      ##- ./conf/php:/usr/local/etc/php
     networks:
       - app-network
 
