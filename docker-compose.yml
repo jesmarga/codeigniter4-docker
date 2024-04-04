@@ -1,6 +1,7 @@
 version: "3.7"
 name: backend
 services:
+## Contenedor para la base de datos 
   db:
     image: mysql:5.7
     container_name: db
@@ -19,6 +20,7 @@ services:
     networks:
       - app-network
 
+## Contenedor de la aplicacion del backend
   app:
     build:
       args:
@@ -39,6 +41,7 @@ services:
     networks:
       - app-network
 
+## Contenedor para el servicio web del backend
   nginx:
     image: nginx
     container_name: web
@@ -55,6 +58,7 @@ services:
     networks:
       - app-network
 
+## Contenedor para crear los respaldos del backend
   periodic-backup:
     build:
       context: ./periodic-backup
@@ -64,20 +68,25 @@ services:
         condition: service_started
     restart: always
     environment:
+      ## Nombre del contenedor de base de datos 
       MYSQL_CONTAINER_NAME: db
+      ## Credenciales de conexion a base de datos para respaldo
       MYSQL_DATABASE: app_db
       MYSQL_ROOT_PASSWORD: "password_root"
     volumes:
       #- /etc/localtime:/etc/localtime:ro
+      ## Rutas para guardar los respaldos del proyecto
       - ./backup/data-base:/opt/mysql/backup
       - ./backup/files:/home/backup/files
       - ./backup/config:/home/backup/config
       - ./backup/src:/home/backup/src
+      ## Ruta de acceso a las carpetas y archivos del proyecto para respaldar
       - .:/home/app-backend
     command: crond -f -d 8
     networks:
       - app-network
 
+## Contenedor para las tareas programadas del backend
   cron-jobs:
     build:
       context: ./cron-jobs
@@ -87,12 +96,14 @@ services:
         condition: service_started
     restart: always
     #volumes:
+    ## Volumenes de las carpetas que se utilicen las tareas programadas
       #- /etc/localtime:/etc/localtime:ro
       #- ./src/files/temp:/home/app-backend/pdfsTemp
     command: crond -f -d 8
     networks:
       - app-network
 
+## Red del backend
 networks:
   app-network:
     driver: bridge
