@@ -1,16 +1,6 @@
 version: "3.7"
 name: backend
 services:
-  # builder:
-  #   image: composer:latest
-  #   container_name: builder-app
-  #   volumes:
-  #     - ./src:/app
-  #   stdin_open: true
-  #   tty: true
-  #   ##command: create-project --ignore-platform-reqs codeigniter4/appstarter /app 
-  #   command: require --ignore-platform-reqs codeigniter4/framework:4.4.7 
-
   app:
     build:
       args:
@@ -20,16 +10,12 @@ services:
       dockerfile: Dockerfile
     image: app
     container_name: app
-    # depends_on:
-    #   builder:
-    #     condition: service_completed_successfully
     restart: unless-stopped
     working_dir: /var/www/html
     volumes:
       - ./src:/var/www/html
     networks:
       - app-network
-    # command: composer require --ignore-platform-reqs codeigniter4/framework:4.4.7
 
   db:
     image: mysql:5.7
