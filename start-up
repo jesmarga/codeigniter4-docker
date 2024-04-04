@@ -1,0 +1,9 @@
+#!/bin/sh
+echo "Iniciando Sitio de Archivo Historico del Consejo Academico UAM-X ..."
+echo "Fecha y hora actual: $(date)"
+DOCKER=$(which docker)
+
+$DOCKER compose build
+$DOCKER compose up -d
+
+echo "El Sitio de Archivo Historico del Consejo Academico UAM-X se inicio exitosamente."
