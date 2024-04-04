@@ -1,0 +1,1 @@
+cat file.sql | docker exec -i db /usr/bin/mysql -u root --password='PASSWORD_DB_CONTAINER' app
