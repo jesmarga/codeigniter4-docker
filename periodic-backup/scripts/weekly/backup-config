@@ -1,0 +1,14 @@
+#!/bin/sh
+echo "Iniciando el script de respaldo CONFIGURACION..."
+echo "Fecha y hora actual: $(date)"
+BACKUP_FOLDER=/home/backup/config
+DIR_FOLDER_CONF=/home/app-backend/conf/
+DIR_FOLDER_CERTIFICADO=/home/app-backend/certificado/
+DIR_FOLDER_LOG=/home/app-backend/log/
+NOW=$(date '+%Y%m%d')
+TAR=$(which tar)
+[ ! -d "$BACKUP_FOLDER" ] && mkdir --parents $BACKUP_FOLDER
+rm -r $BACKUP_FOLDER/backup-conf-*.tar.gz
+FILE=${BACKUP_FOLDER}/backup-conf-${NOW}.tar.gz
+$TAR -czvf ${FILE} ${DIR_FOLDER_CONF} ${DIR_FOLDER_CERTIFICADO} ${DIR_FOLDER_LOG} 
+echo "Script de respaldo CONFIGURACION completado exitosamente."

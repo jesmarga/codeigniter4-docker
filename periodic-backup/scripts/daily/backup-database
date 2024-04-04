@@ -1,0 +1,21 @@
+#!/bin/sh
+echo "Iniciando el script de respaldo MYSQL..."
+echo "Fecha y hora actual: $(date)"
+BACKUP_FOLDER=/opt/mysql/backup
+NOW=$(date '+%Y%m%d')
+GZIP=$(which gzip)
+TAR=$(which tar)
+MYSQLDUMP=$(which mysqldump)
+### MySQL Server Login info datos tomados del archivo docker-compose###
+MDB=$MYSQL_DATABASE
+MHOST=$MYSQL_CONTAINER_NAME
+MPASS=$MYSQL_ROOT_PASSWORD
+MUSER=root
+[ ! -d "$BACKUP_FOLDER" ] && mkdir --parents $BACKUP_FOLDER
+rm -r $BACKUP_FOLDER/*
+FILE_MYSQL=${BACKUP_FOLDER}/$MDB.sql
+$MYSQLDUMP -h $MHOST -u $MUSER -p${MPASS} --databases $MDB > $FILE_MYSQL
+FILE_TAR=${BACKUP_FOLDER}/backup-bd-${NOW}.tar.gz
+$TAR -czvf ${FILE_TAR} ${FILE_MYSQL}
+rm ${FILE_MYSQL}
+echo "Script de respaldo MYSQL completado exitosamente."
