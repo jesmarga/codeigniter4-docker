@@ -14,6 +14,6 @@ class TestController extends ResourceController
     {
         $objTest = new stdClass();
         $objTest->nombre = 'Test 1';
-        return $this->respond($this->model->findAll());
+        return $this->respond($this->model->find(1));
     }
 }
