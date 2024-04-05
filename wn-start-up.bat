@@ -10,4 +10,5 @@ if exist "%VENDOR_DIR%" (
     echo Ambiente iniciado
 ) else (
    docker exec -u root -ti app composer require --ignore-platform-reqs codeigniter4/framework:4.4.7
+   docker exec -u root -ti app chmod -R 777 /var/www/html/writable/
 )
