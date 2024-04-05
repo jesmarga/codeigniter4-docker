@@ -1,5 +1,5 @@
 version: "3.7"
-name: app-backend
+name: app_backend
 services:
 ## Contenedor para la base de datos 
   db:
