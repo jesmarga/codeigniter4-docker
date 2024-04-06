@@ -14,6 +14,21 @@ Este proyecto consiste en una aplicación backend con contenedores Docker para f
 4. Ejecuta `docker-compose up -d` para construir y levantar los contenedores en modo detached.
 5. La aplicación estará disponible en [http://localhost](http://localhost).
 
+## Scripts de Inicio del Entorno
+El proyecto proporciona scripts para iniciar el entorno en diferentes sistemas operativos. Los scripts automatizan tareas comunes como instalar dependencias, iniciar y detener los contenedores Docker.
+
+### Linux
+- **linux-build.sh:** Instala las dependencias del proyecto.
+- **linux-start-console-app.sh:** Ingresa a la línea de comandos del contenedor de la aplicación.
+- **linux-start-down.sh:** Detiene el ambiente destruyendo los contenedores.
+- **linux-start-up.sh:** Despliega el ambiente y, si las dependencias no están instaladas, las instala.
+
+### Windows
+- **wn-build.bat:** Instala las dependencias del proyecto.
+- **wn-console-app.bat:** Ingresa a la línea de comandos del contenedor de la aplicación.
+- **wn-start-down.bat:** Detiene el ambiente destruyendo los contenedores.
+- **wn-start-up.bat:** Despliega el ambiente y, si las dependencias no están instaladas, las instala.
+
 ## Servicios
 El proyecto consta de los siguientes servicios:
 
