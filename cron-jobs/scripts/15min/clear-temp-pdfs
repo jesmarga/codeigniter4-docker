@@ -1,6 +1,6 @@
 #!/bin/sh
 # echo "Iniciando el script de limpieza de PDF temp..."
 # echo "Fecha y hora actual: $(date)"
-# DIR_FOLDER=/home/ahconsejo/pdfsTemp/*
+# DIR_FOLDER=/home/app-backend/pdfsTemp/*
 # rm ${DIR_FOLDER} 
 # echo "Script de limpieza de PDF temp completado exitosamente."
