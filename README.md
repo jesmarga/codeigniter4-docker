@@ -32,7 +32,7 @@ El proyecto proporciona scripts para iniciar el entorno en diferentes sistemas o
 ## Servicios
 El proyecto consta de los siguientes servicios:
 
-### 1. db (MySQL)
+### 1. db (MySQL 5.7)
 - **Puerto expuesto:** 3306
 - **Variables de entorno:**
   - MYSQL_DATABASE: "app_db"
@@ -47,7 +47,7 @@ El proyecto consta de los siguientes servicios:
   - ./src:/var/www/html
   - ./log/codeigniter:/var/www/html/writable/logs
 
-### 3. nginx (Servidor Web Nginx)
+### 3. nginx (Servidor Web Nginx stable-alpine3.17)
 - **Puertos expuestos:** 80
 - **Volúmenes:**
   - ./src:/var/www/html
